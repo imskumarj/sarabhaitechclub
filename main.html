@@ -208,6 +208,11 @@
                 tabs.style.position = 'static';
             }
         });
+                    // Clear sessionStorage on reload or refresh
+            window.addEventListener("beforeunload", () => {
+                sessionStorage.removeItem("loggedIn");
+                sessionStorage.removeItem("name");
+            });
     </script>
 </body>
 </html>
