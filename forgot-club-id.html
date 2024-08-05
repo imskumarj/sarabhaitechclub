@@ -63,12 +63,49 @@
     </div>
     <script>
         const users = [
-            { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR", dob: "2000-01-01", clubID: "1234" },
-            { username: "9650195907", password: "1082", name: "Dhruv Kumar Sinha", dob: "2001-02-02", clubID: "5678" },
-            { username: "8851190271", password: "1010", name: "Ishpreet Singh", dob: "2002-03-03", clubID: "9101" },
-            { username: "8505827063", password: "8132", name: "Navneet Mani Tiwari", dob: "2003-04-04", clubID: "1121" },
-            // Add other users with dob and clubID
-        ];
+    { name: "SUDHANSU KUMAR", username: "9625543638", password: "9299", dob: "08/17/2006" },
+    { name: "Dhruv Kumar Sinha", username: "9650195907", password: "1082", dob: "01/22/2007" },
+    { name: "Ishpreet Singh", username: "8851190271", password: "1010", dob: "10/10/2006" },
+    { name: "Parth Kataria", username: "9599952363", password: "3023", dob: "06/02/2009" },
+    { name: "Anshika Chauhan", username: "9650809428", password: "8209", dob: "09/21/2010" },
+    { name: "Prabhesh Swesh", username: "8826584503", password: "6082", dob: "05/21/2009" },
+    { name: "Monu Rekdot", username: "9785641349", password: "8341", dob: "12/21/2010" },
+    { name: "Navneet Mani Tiwari", username: "8505827063", password: "8132", dob: "02/13/2013" },
+    { name: "Rishika", username: "9318358085", password: "1147", dob: "05/27/2010" },
+    { name: "TEJASVI", username: "9599118858", password: "2910", dob: "10/17/2006" },
+    { name: "Chitraksh", username: "9968575292", password: "4835", dob: "10/28/2012" },
+    { name: "Divyanshu", username: "9717571273", password: "1921", dob: "01/31/2024" },
+    { name: "ARYAN SINGH", username: "9718656814", password: "8804", dob: "10/30/2011" },
+    { name: "Arnaw Narain Yaduvanshi", username: "9450251338", password: "5276", dob: "10/17/2011" },
+    { name: "Avya verma", username: "8527960618", password: "4026", dob: "06/09/2012" },
+    { name: "PRAKRITI", username: "9818680879", password: "8764", dob: "02/11/2012" },
+    { name: "Diksha Bohra", username: "8178706225", password: "9802", dob: "06/24/2011" },
+    { name: "BHOTIK KUMAR", username: "9319068648", password: "4121", dob: "08/21/2010" },
+    { name: "Anwesha Srivastava", username: "9891872131", password: "6306", dob: "11/01/2008" },
+    { name: "ANKITA KUMARI", username: "8700865001", password: "2246", dob: "04/21/2007" },
+    { name: "Rohit kumar", username: "9873874073", password: "6253", dob: "11/19/2009" },
+    { name: "Shivkant", username: "7678629433", password: "3090", dob: "11/03/2008" },
+    { name: "Tanmay Singh", username: "9717765529", password: "6240", dob: "03/06/2012" },
+    { name: "Yash Sharma", username: "8700637101", password: "2073", dob: "12/16/2008" },
+    { name: "Suvidhi Bhatnagar", username: "8510901326", password: "8492", dob: "10/22/2012" },
+    { name: "Ananya", username: "8920538207", password: "2725", dob: "09/16/2011" },
+    { name: "Vinod Anand", username: "9319060225", password: "5482", dob: "10/31/2011" },
+    { name: "Shreya Badola", username: "9717682000", password: "6388", dob: "01/20/2012" },
+    { name: "Sukhmani kaur", username: "8750026708", password: "2663", dob: "11/30/2013" },
+    { name: "Jiya Joshi", username: "9911578144", password: "1971", dob: "01/12/2013" },
+    { name: "Nikhil Daksh", username: "8424851128", password: "3762", dob: "11/12/2011" },
+    { name: "Anish Ranjan", username: "8076068834", password: "6757", dob: "10/23/2010" },
+    { name: "Aditya pal", username: "9013330782", password: "5129", dob: "01/19/2010" },
+    { name: "Anushka Tanwar", username: "9509149540", password: "8332", dob: "11/10/2010" },
+    { name: "Shahil Shivam", username: "8368992775", password: "4311", dob: "09/07/2009" },
+    { name: "Arth Gohil", username: "9718859339", password: "2442", dob: "11/27/2012" },
+    { name: "Anish kumar", username: "98993 59162", password: "2999", dob: "12/22/2011" },
+    { name: "Tanishi", username: "8295078932", password: "4205", dob: "05/27/2010" },
+    { name: "Manmohan singh kohli", username: "9315190850", password: "5298", dob: "12/25/2012" },
+    { name: "Shadab Saifi", username: "8587059827", password: "4734", dob: "10/30/2009" },
+    { name: "Kashish Mehra", username: "8882507550", password: "4181", dob: "04/27/2012" },
+    { name: "Mohit Kumar Parmar", username: "7015438934", password: "9807", dob: "09/26/2011" }
+];
 
         function findClubID() {
             const phone = document.getElementById("phone").value;
