@@ -6,114 +6,125 @@
     <title>Forgot Club ID</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             background-color: #333333;
             color: goldenrod;
-            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .container {
-            width: 300px;
-            margin: auto;
-            padding-top: 100px;
-            text-align: center;
+            max-width: 500px;
+            padding: 20px;
+            border: 1px solid goldenrod;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #444444;
         }
-        .input-field {
-            margin-bottom: 15px;
+        input {
+            width: 93.5%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid goldenrod;
+            border-radius: 5px;
+            background-color: #555555;
+            color: goldenrod;
         }
-        .button {
+        button {
+            width: 100%;
+            padding: 10px;
             background-color: goldenrod;
             color: #333333;
             border: none;
-            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
         }
-        .button:hover {
-            background-color: darkgoldenrod;
+        button:hover {
+            background-color: #daa520;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid goldenrod;
+            border-radius: 5px;
+            background-color: #555555;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Forgot Club ID</h1>
-        <div class="input-field">
-            <input type="text" id="phone" placeholder="Enter Phone Number">
-        </div>
-        <div class="input-field">
-            <input type="text" id="dob" placeholder="Enter Date of Birth (YYYY-MM-DD)">
-        </div>
-        <div>
-            <button class="button" onclick="retrieveClubID()">Find Club ID</button>
-        </div>
-        <div id="result" style="margin-top: 20px;"></div>
-        <div style="margin-top: 20px;">
-            <button class="button" onclick="goBack()">Back to Login</button>
-        </div>
+        <h2>Forgot Club ID</h2>
+        <input type="text" id="phone" placeholder="Enter your phone number">
+        <input type="date" id="dob" placeholder="Enter your date of birth">
+        <button onclick="findClubID()">Find Club ID</button>
+        <div id="result" class="result" style="display: none;"></div>
     </div>
-
     <script>
         const users = [
-            {"name": "SUDHANSU KUMAR", "username": "9625543638", "password": "9299", "dob": "2006-08-17"},
-            {"name": "Dhruv Kumar Sinha", "username": "9650195907", "password": "1082", "dob": "2007-01-22"},
-            {"name": "Ishpreet Singh", "username": "8851190271", "password": "1010", "dob": "2006-10-10"},
-            {"name": "Parth Kataria", "username": "9599952363", "password": "3023", "dob": "2009-06-02"},
-            {"name": "Anshika Chauhan", "username": "9650809428", "password": "8209", "dob": "2010-09-21"},
-            {"name": "Prabhesh Swesh", "username": "8826584503", "password": "6082", "dob": "2009-05-21"},
-            {"name": "Monu Rekdot", "username": "9785641349", "password": "8341", "dob": "2010-12-21"},
-            {"name": "Navneet Mani Tiwari", "username": "8505827063", "password": "8132", "dob": "2013-02-13"},
-            {"name": "Rishika", "username": "9318358085", "password": "1147", "dob": "2010-05-27"},
-            {"name": "TEJASVI ", "username": "9599118858", "password": "2910", "dob": "2006-10-17"},
-            {"name": "Chitraksh", "username": "9968575292", "password": "4835", "dob": "2012-10-28"},
-            {"name": "Divyanshu", "username": "9717571273", "password": "1921", "dob": "2024-01-31"},
-            {"name": "ARYAN SINGH", "username": "9718656814", "password": "8804", "dob": "2011-10-30"},
-            {"name": "Arnaw Narain Yaduvanshi", "username": "9450251338", "password": "5276", "dob": "2011-10-17"},
-            {"name": "Avya verma", "username": "8527960618", "password": "4026", "dob": "2012-06-09"},
-            {"name": "PRAKRITI", "username": "9818680879", "password": "8764", "dob": "2012-02-11"},
-            {"name": "Diksha Bohra", "username": "8178706225", "password": "9802", "dob": "2011-06-24"},
-            {"name": "BHOTIK KUMAR", "username": "9319068648", "password": "4121", "dob": "2010-08-21"},
-            {"name": "Anwesha Srivastava", "username": "9891872131", "password": "6306", "dob": "2008-11-01"},
-            {"name": "ANKITA KUMARI ", "username": "8700865001", "password": "2246", "dob": "2007-04-21"},
-            {"name": "Rohit kumar", "username": "9873874073", "password": "6253", "dob": "2008-11-03"},
-            {"name": "Tanmay Singh ", "username": "9717765529", "password": "6240", "dob": "2012-03-06"},
-            {"name": "Yash Sharma ", "username": "8700637101", "password": "2073", "dob": "2008-12-16"},
-            {"name": "Suvidhi Bhatnagar ", "username": "8510901326", "password": "8492", "dob": "2012-10-22"},
-            {"name": "Ananya ", "username": "8920538207", "password": "2725", "dob": "2011-09-16"},
-            {"name": "Vinod Anand", "username": "9319060225", "password": "5482", "dob": "2011-10-31"},
-            {"name": "Shreya Badola ", "username": "9717682000", "password": "6388", "dob": "2012-01-20"},
-            {"name": "Sukhmani kaur ", "username": "8750026708", "password": "2663", "dob": "2013-11-30"},
-            {"name": "Jiya Joshi", "username": "9911578144", "password": "1971", "dob": "2013-01-12"},
-            {"name": "Nikhil Daksh", "username": "8424851128", "password": "3762", "dob": "2011-11-12"},
-            {"name": "Anish Ranjan", "username": "8076068834", "password": "6757", "dob": "2010-10-23"},
-            {"name": "Aditya pal", "username": "9013330782", "password": "5129", "dob": "2010-01-19"},
-            {"name": "Anushka Tanwar", "username": "9509149540", "password": "8332", "dob": "2010-11-10"},
-            {"name": "Shahil Shivam ", "username": "8368992775", "password": "4311", "dob": "2009-09-07"},
-            {"name": "Arth Gohil", "username": "9718859339", "password": "2442", "dob": "2012-11-27"},
-            {"name": "Anish kumar", "username": "98993 59162 ", "password": "2999", "dob": "2011-12-22"},
-            {"name": "Tanishi", "username": "8295078932", "password": "4205", "dob": "2010-05-27"},
-            {"name": "Manmohan singh kohli ", "username": "9315190850", "password": "5298", "dob": "2012-12-25"},
-            {"name": "Shadab Saifi", "username": "8587059827", "password": "4734", "dob": "2009-10-30"},
-            {"name": "Kashish Mehra", "username": "8882507550", "password": "4181", "dob": "2012-04-27"},
-            {"name": "Mohit Kumar Parmar", "username": "7015438934", "password": "9807", "dob": "2011-09-26"}
-        ];
+    {"name": "SUDHANSU KUMAR", "username": "9625543638", "password": "9299", "dob": "2006-08-17"},
+    {"name": "Dhruv Kumar Sinha", "username": "9650195907", "password": "1082", "dob": "2007-01-22"},
+    {"name": "Ishpreet Singh", "username": "8851190271", "password": "1010", "dob": "2006-10-10"},
+    {"name": "Parth Kataria", "username": "9599952363", "password": "3023", "dob": "2009-06-02"},
+    {"name": "Anshika Chauhan", "username": "9650809428", "password": "8209", "dob": "2010-09-21"},
+    {"name": "Prabhesh Swesh", "username": "8826584503", "password": "6082", "dob": "2009-05-21"},
+    {"name": "Monu Rekdot", "username": "9785641349", "password": "8341", "dob": "2010-12-21"},
+    {"name": "Navneet Mani Tiwari", "username": "8505827063", "password": "8132", "dob": "2013-02-13"},
+    {"name": "Rishika", "username": "9318358085", "password": "1147", "dob": "2010-05-27"},
+    {"name": "TEJASVI ", "username": "9599118858", "password": "2910", "dob": "2006-10-17"},
+    {"name": "Chitraksh", "username": "9968575292", "password": "4835", "dob": "2012-10-28"},
+    {"name": "Divyanshu", "username": "9717571273", "password": "1921", "dob": "2024-01-31"},
+    {"name": "ARYAN SINGH", "username": "9718656814", "password": "8804", "dob": "2011-10-30"},
+    {"name": "Arnaw Narain Yaduvanshi", "username": "9450251338", "password": "5276", "dob": "2011-10-17"},
+    {"name": "Avya verma", "username": "8527960618", "password": "4026", "dob": "2012-06-09"},
+    {"name": "PRAKRITI", "username": "9818680879", "password": "8764", "dob": "2012-02-11"},
+    {"name": "Diksha Bohra", "username": "8178706225", "password": "9802", "dob": "2011-06-24"},
+    {"name": "BHOTIK KUMAR", "username": "9319068648", "password": "4121", "dob": "2010-08-21"},
+    {"name": "Anwesha Srivastava", "username": "9891872131", "password": "6306", "dob": "2008-11-01"},
+    {"name": "ANKITA KUMARI ", "username": "8700865001", "password": "2246", "dob": "2007-04-21"},
+    {"name": "Rohit kumar", "username": "9873874073", "password": "6253", "dob": "2008-11-03"},
+    {"name": "Tanmay Singh ", "username": "9717765529", "password": "6240", "dob": "2012-03-06"},
+    {"name": "Yash Sharma ", "username": "8700637101", "password": "2073", "dob": "2008-12-16"},
+    {"name": "Suvidhi Bhatnagar ", "username": "8510901326", "password": "8492", "dob": "2012-10-22"},
+    {"name": "Ananya ", "username": "8920538207", "password": "2725", "dob": "2011-09-16"},
+    {"name": "Vinod Anand", "username": "9319060225", "password": "5482", "dob": "2011-10-31"},
+    {"name": "Shreya Badola ", "username": "9717682000", "password": "6388", "dob": "2012-01-20"},
+    {"name": "Sukhmani kaur ", "username": "8750026708", "password": "2663", "dob": "2013-11-30"},
+    {"name": "Jiya Joshi", "username": "9911578144", "password": "1971", "dob": "2013-01-12"},
+    {"name": "Nikhil Daksh", "username": "8424851128", "password": "3762", "dob": "2011-11-12"},
+    {"name": "Anish Ranjan", "username": "8076068834", "password": "6757", "dob": "2010-10-23"},
+    {"name": "Aditya pal", "username": "9013330782", "password": "5129", "dob": "2010-01-19"},
+    {"name": "Anushka Tanwar", "username": "9509149540", "password": "8332", "dob": "2010-11-10"},
+    {"name": "Shahil Shivam ", "username": "8368992775", "password": "4311", "dob": "2009-09-07"},
+    {"name": "Arth Gohil", "username": "9718859339", "password": "2442", "dob": "2012-11-27"},
+    {"name": "Anish kumar", "username": "98993 59162 ", "password": "2999", "dob": "2011-12-22"},
+    {"name": "Tanishi", "username": "8295078932", "password": "4205", "dob": "2010-05-27"},
+    {"name": "Manmohan singh kohli ", "username": "9315190850", "password": "5298", "dob": "2012-12-25"},
+    {"name": "Shadab Saifi", "username": "8587059827", "password": "4734", "dob": "2009-10-30"},
+    {"name": "Kashish Mehra", "username": "8882507550", "password": "4181", "dob": "2012-04-27"},
+    {"name": "Mohit Kumar Parmar", "username": "7015438934", "password": "9807", "dob": "2011-09-26"}
+];
 
-        function retrieveClubID() {
+        function findClubID() {
             const phone = document.getElementById("phone").value;
             const dob = document.getElementById("dob").value;
             const user = users.find(user => user.username === phone && user.dob === dob);
 
-            const result = document.getElementById("result");
+            const resultDiv = document.getElementById("result");
+
             if (user) {
-                result.innerText = `Hello ${user.name}, your Club ID is: ${user.password}`;
+                resultDiv.innerHTML = `Your Club ID is: ${user.password}`;
+                resultDiv.style.display = "block";
             } else {
-                result.innerText = "No matching records found. Please check your inputs.";
+                resultDiv.innerHTML = `No user found with the provided phone number and date of birth.`;
+                resultDiv.style.display = "block";
             }
         }
 
-        function goBack() {
-            window.location.href = 'index.html';
-        }
-
         window.onload = function() {
-            if (window.performance && window.performance.navigation.type === 1) {
-                window.location.href = 'index.html';
+            if (performance.navigation.type === 1) {
+                window.location.href = "login.html";
             }
         }
     </script>
