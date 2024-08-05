@@ -7,40 +7,49 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: goldenrod;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .container {
             max-width: 500px;
-            margin: auto;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid goldenrod;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #444444;
         }
         input {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid goldenrod;
             border-radius: 5px;
+            background-color: #555555;
+            color: goldenrod;
         }
         button {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: goldenrod;
+            color: #333333;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #daa520;
         }
         .result {
             margin-top: 20px;
             padding: 10px;
-            border: 1px solid #4CAF50;
+            border: 1px solid goldenrod;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: #555555;
         }
     </style>
 </head>
@@ -54,8 +63,10 @@
     </div>
     <script>
         const users = [
-            { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR", dob: "2006-08-17", clubID: "1234" },
+            { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR", dob: "2000-01-01", clubID: "1234" },
             { username: "9650195907", password: "1082", name: "Dhruv Kumar Sinha", dob: "2001-02-02", clubID: "5678" },
+            { username: "8851190271", password: "1010", name: "Ishpreet Singh", dob: "2002-03-03", clubID: "9101" },
+            { username: "8505827063", password: "8132", name: "Navneet Mani Tiwari", dob: "2003-04-04", clubID: "1121" },
             // Add other users with dob and clubID
         ];
 
@@ -72,6 +83,12 @@
             } else {
                 resultDiv.innerHTML = `No user found with the provided phone number and date of birth.`;
                 resultDiv.style.display = "block";
+            }
+        }
+
+        window.onload = function() {
+            if (performance.navigation.type === 1) {
+                window.location.href = "login.html";
             }
         }
     </script>
