@@ -77,6 +77,12 @@
     </div>
     <div id="popup" class="popup">Login failed, try again.</div>
 
+    <div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #444; color: white; padding: 20px; border-radius: 5px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
+        <h3>Congratulations!</h3>
+        <p>On topping TTSC'24 edition and getting a chance to visit IIIT Delhi and Microsoft Office!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
     <script>
         const users = [
     { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR" },
@@ -142,5 +148,44 @@
             }
         }
     </script>
+    <script>
+    // List of users who should see the popup message
+    const popupUsers = [
+        "9650809428",  // Anshika
+        "8826584503",  // Prabhesh
+        "9319060225",  // Vinod
+        "9365703944"   // Mohit
+    ];
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const user = users.find(user => user.username === username && user.password === password);
+
+        if (user) {
+            alert('Login successful!');
+
+            // Check if the user is one of the users who should see the popup message
+            if (popupUsers.includes(username)) {
+                // Show the popup message
+                document.getElementById('popup').style.display = 'block';
+                return; // Prevent further execution until the popup is closed
+            }
+
+            // Optionally, you can add any other actions here after login
+        } else {
+            alert('Invalid username or password.');
+        }
+    });
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+        // Add any redirection or further actions here
+        window.location.href = 'main.html'; // Redirect to the main page after closing the popup
+    }
+</script>
 </body>
 </html>
