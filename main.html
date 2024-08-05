@@ -87,12 +87,6 @@
             <button id="sessions-tab" onclick="showTab('sessions')">Sessions</button>
             <button id="other-info-tab" onclick="showTab('other-info')">Other Information</button>
         </div>
-        <div id="sessionBlock" style="display: none;">
-                <h3>Congratulations on your victory!</h3>
-                <p>You are among the top 4 in TechTrack Summer Camp 2024 to participate in HackArCode and visit IIIT Delhi.
-                    Many many congratulations from the club end.</p>
-            <hr>
-        </div>
         <div id="recent" class="tab-content active">
             <div class="session-box">
                 <h3>Online Classes Schedule</h3>
@@ -162,39 +156,7 @@
         <button class="logout-button" onclick="logout()">Logout</button>
     </div>
 
-<script>
-    const specialUsers = [
-        "9650809428",  
-        "8826584503",
-        "9319060225",
-        "7015438934"
-    ];
-
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        const user = users.find(user => user.username === username && user.password === password);
-
-        if (user) {
-            alert('Login successful!');
-
-            if (specialUsers.includes(username)) {
-                document.getElementById('sessionBlock').style.display = 'block';
-            }
-
-        } else {
-            alert('Invalid username or password.');
-        }
-    });
-
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-    }
-    
+    <script>
         if (sessionStorage.getItem("loggedIn") !== "true") {
             alert("Please log in.");
             window.location.href = "login.html";
