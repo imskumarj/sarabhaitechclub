@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Club ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Forgot Club ID</h2>
+        <input type="text" id="phone" placeholder="Enter your phone number">
+        <input type="date" id="dob" placeholder="Enter your date of birth">
+        <button onclick="findClubID()">Find Club ID</button>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+    <script>
+        const users = [
+            { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR", dob: "2006-08-17", clubID: "1234" },
+            { username: "9650195907", password: "1082", name: "Dhruv Kumar Sinha", dob: "2001-02-02", clubID: "5678" },
+            // Add other users with dob and clubID
+        ];
+
+        function findClubID() {
+            const phone = document.getElementById("phone").value;
+            const dob = document.getElementById("dob").value;
+            const user = users.find(user => user.username === phone && user.dob === dob);
+
+            const resultDiv = document.getElementById("result");
+
+            if (user) {
+                resultDiv.innerHTML = `Your Club ID is: ${user.clubID}`;
+                resultDiv.style.display = "block";
+            } else {
+                resultDiv.innerHTML = `No user found with the provided phone number and date of birth.`;
+                resultDiv.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
