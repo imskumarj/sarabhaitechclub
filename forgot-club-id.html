@@ -60,6 +60,9 @@
         <input type="date" id="dob" placeholder="Enter your date of birth">
         <button onclick="findClubID()">Find Club ID</button>
         <div id="result" class="result" style="display: none;"></div>
+        <div style="margin-top: 20px;">
+            <button class="button" onclick="goBack()">Back to Login</button>
+        </div>
     </div>
     <script>
         const users = [
@@ -122,6 +125,10 @@
             }
         }
 
+        function goBack() {
+            window.location.href = 'login.html';
+        }
+        
         window.onload = function() {
             if (performance.navigation.type === 1) {
                 window.location.href = "login.html";
