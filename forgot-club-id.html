@@ -49,7 +49,7 @@
             padding: 10px;
             border: 1px solid goldenrod;
             border-radius: 5px;
-            background-color: #555555;
+            background-color: white;
         }
     </style>
 </head>
@@ -60,9 +60,7 @@
         <input type="date" id="dob" placeholder="Enter your date of birth">
         <button onclick="findClubID()">Find Club ID</button>
         <div id="result" class="result" style="display: none;"></div>
-        <div style="margin-top: 20px;">
-            <button class="button" onclick="goBack()">Back to Login</button>
-        </div>
+        <button onclick="goBack()">Back to Login</button>
     </div>
     <script>
         const users = [
