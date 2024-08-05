@@ -62,7 +62,7 @@
         <div id="result" class="result" style="display: none;"></div>
     </div>
     <script>
-        [
+        const users = [
     {"name": "SUDHANSU KUMAR", "username": "9625543638", "password": "9299", "dob": "2006-08-17"},
     {"name": "Dhruv Kumar Sinha", "username": "9650195907", "password": "1082", "dob": "2007-01-22"},
     {"name": "Ishpreet Singh", "username": "8851190271", "password": "1010", "dob": "2006-10-10"},
@@ -114,7 +114,7 @@
             const resultDiv = document.getElementById("result");
 
             if (user) {
-                resultDiv.innerHTML = `Your Club ID is: ${user.clubID}`;
+                resultDiv.innerHTML = `Your Club ID is: ${user.password}`;
                 resultDiv.style.display = "block";
             } else {
                 resultDiv.innerHTML = `No user found with the provided phone number and date of birth.`;
