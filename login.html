@@ -3,166 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Login</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: goldenrod;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #333; 
-            font-family: 'Poppins', sans-serif;
             margin: 0;
-            color: #f0f0f0; 
         }
         .login-container {
-            background-color: #444;
+            max-width: 400px;
             padding: 20px;
+            border: 1px solid goldenrod;
             border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            width: 300px;
-            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #444444;
         }
-        .login-container img {
-            width: 100px; 
-            margin-bottom: 20px;
-        }
-        .login-container h2 {
-            margin-top: -30px;
-            margin-bottom: 20px;
-        }
-        .login-container input {
-            width: calc(100% - 20px);
+        input {
+            width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid goldenrod;
             border-radius: 5px;
-            background-color: #555;
-            color: #f0f0f0;
+            background-color: #555555;
+            color: goldenrod;
         }
-        .login-container button {
+        button {
             width: 100%;
             padding: 10px;
             background-color: goldenrod;
-            color: white;
+            color: #333333;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        .login-container button:hover {
+        button:hover {
             background-color: #daa520;
         }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ff4d4d;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        a {
+            color: goldenrod;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <img src="logo.png" alt="Logo"> 
         <h2>Login</h2>
-        <input type="text" id="username" placeholder="Phone Number">
-        <input type="password" id="password" placeholder="Club Member ID">
-        <button onclick="login()">Login</button>
-        <hr> 
+        <form onsubmit="event.preventDefault(); login();">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
         <a href="forgot-club-id.html">Forgot Club ID?</a>
+        <div id="popup" style="display:none;">Incorrect username or password.</div>
     </div>
-    <div id="popup" class="popup">Login failed, try again.</div>
+    <script>
+        const users = [
+            { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR" },
+            { username: "9650195907", password: "1082", name: "Dhruv Kumar Sinha" },
+            { username: "8851190271", password: "1010", name: "Ishpreet Singh" },
+            { username: "8505827063", password: "8132", name: "Navneet Mani Tiwari" },
+            { username: "9318358085", password: "1147", name: "Rishika" },
+            { username: "9599118858", password: "2910", name: "TEJASVI " },
+            { username: "9968575292", password: "4835", name: "Chitraksh" },
+            { username: "9717571273", password: "1921", name: "Divyanshu" },
+            { username: "9718656814", password: "8804", name: "ARYAN SINGH" },
+            { username: "9450251338", password: "5276", name: "Arnaw Narain Yaduvanshi" },
+            { username: "8527960618", password: "4026", name: "Avya verma" },
+            { username: "9818680879", password: "8764", name: "PRAKRITI" },
+            { username: "8178706225", password: "9802", name: "Diksha Bohra" },
+            { username: "9319068648", password: "4121", name: "BHOTIK KUMAR" },
+            { username: "9891872131", password: "6306", name: "Anwesha Srivastava" },
+            { username: "8700865001", password: "2246", name: "ANKITA KUMARI " },
+            { username: "9873874073", password: "6253", name: "Rohit kumar" },
+            { username: "8766396650", password: "6572", name: "B. MANIKANTA SWAMY " },
+            { username: "8287302318", password: "9279", name: "RITIKA" },
+            { username: "9599952363", password: "3023", name: "Parth Kataria" },
+            { username: "9650809428", password: "8209", name: "Anshika Chauhan" },
+            { username: "8826584503", password: "6082", name: "Prabhesh Swesh" },
+            { username: "8107980042", password: "2538", name: "Aayush kumar thory" },
+            { username: "9785641349", password: "8341", name: "Monu Rekdot" },
+            { username: "7678629433", password: "3090", name: "Shivkant" },
+            { username: "8341711712", password: "6898", name: "B.PRAVALIKA NANDINI" },
+            { username: "9717765529", password: "6240", name: "Tanmay Singh " },
+            { username: "8700637101", password: "2073", name: "Yash Sharma " },
+            { username: "8510901326", password: "8492", name: "Suvidhi Bhatnagar " },
+            { username: "8920538207", password: "2725", name: "Ananya " },
+            { username: "9319060225", password: "5482", name: "Vinod Anand" },
+            { username: "9717682000", password: "6388", name: "Shreya Badola " },
+            { username: "8750026708", password: "2663", name: "Sukhmani kaur " },
+            { username: "9911578144", password: "1971", name: "Jiya Joshi" },
+            { username: "8424851128", password: "3762", name: "Nikhil Daksh" },
+            { username: "8076068834", password: "6757", name: "Anish Ranjan" },
+            { username: "9013330782", password: "5129", name: "Aditya pal" },
+            { username: "9509149540", password: "8332", name: "Anushka Tanwar" },
+            { username: "7015438934", password: "9807", name: "Mohit Kumar Parmar" },
+            { username: "8368992775", password: "4311", name: "Shahil Shivam" },
+            { username: "9718859339", password: "2442", name: "Arth Gohil" },
+            { username: "9899359162", password: "2999", name: "Anish kumar" },
+            { username: "8295078932", password: "4205", name: "Tanishi" }
+        ];
 
-    <div id="specialPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #444; color: white; padding: 20px; border-radius: 5px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
-        <h3>Congratulations!</h3>
-        <p>On topping TTSC'24 edition and getting a chance to visit IIIT Delhi and Microsoft Office!</p>
-        <button onclick="closeSpecialPopup()">Close</button>
-    </div>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const user = users.find(user => user.username === username && user.password === password);
 
-<script>
-    const users = [
-        { username: "9625543638", password: "9299", name: "SUDHANSU KUMAR" },
-        { username: "9650195907", password: "1082", name: "Dhruv Kumar Sinha" },
-        { username: "8851190271", password: "1010", name: "Ishpreet Singh" },
-        { username: "8505827063", password: "8132", name: "Navneet Mani Tiwari" },
-        { username: "9318358085", password: "1147", name: "Rishika" },
-        { username: "9599118858", password: "2910", name: "TEJASVI " },
-        { username: "9968575292", password: "4835", name: "Chitraksh" },
-        { username: "9717571273", password: "1921", name: "Divyanshu" },
-        { username: "9718656814", password: "8804", name: "ARYAN SINGH" },
-        { username: "9450251338", password: "5276", name: "Arnaw Narain Yaduvanshi" },
-        { username: "8527960618", password: "4026", name: "Avya verma" },
-        { username: "9818680879", password: "8764", name: "PRAKRITI" },
-        { username: "8178706225", password: "9802", name: "Diksha Bohra" },
-        { username: "9319068648", password: "4121", name: "BHOTIK KUMAR" },
-        { username: "9891872131", password: "6306", name: "Anwesha Srivastava" },
-        { username: "8700865001", password: "2246", name: "ANKITA KUMARI " },
-        { username: "9873874073", password: "6253", name: "Rohit kumar" },
-        { username: "8766396650", password: "6572", name: "B. MANIKANTA SWAMY " },
-        { username: "8287302318", password: "9279", name: "RITIKA" },
-        { username: "9599952363", password: "3023", name: "Parth Kataria" },
-        { username: "9650809428", password: "8209", name: "Anshika Chauhan" },
-        { username: "8826584503", password: "6082", name: "Prabhesh Swesh" },
-        { username: "8107980042", password: "2538", name: "Aayush kumar thory" },
-        { username: "9785641349", password: "8341", name: "Monu Rekdot" },
-        { username: "7678629433", password: "3090", name: "Shivkant" },
-        { username: "8341711712", password: "6898", name: "B.PRAVALIKA NANDINI" },
-        { username: "9717765529", password: "6240", name: "Tanmay Singh " },
-        { username: "8700637101", password: "2073", name: "Yash Sharma " },
-        { username: "8510901326", password: "8492", name: "Suvidhi Bhatnagar " },
-        { username: "8920538207", password: "2725", name: "Ananya " },
-        { username: "9319060225", password: "5482", name: "Vinod Anand" },
-        { username: "9717682000", password: "6388", name: "Shreya Badola " },
-        { username: "8750026708", password: "2663", name: "Sukhmani kaur " },
-        { username: "9911578144", password: "1971", name: "Jiya Joshi" },
-        { username: "8424851128", password: "3762", name: "Nikhil Daksh" },
-        { username: "8076068834", password: "6757", name: "Anish Ranjan" },
-        { username: "9013330782", password: "5129", name: "Aditya pal" },
-        { username: "9509149540", password: "8332", name: "Anushka Tanwar" },
-        { username: "7015438934", password: "9807", name: "Mohit Kumar Parmar" },
-        { username: "8368992775", password: "4311", name: "Shahil Shivam" },
-        { username: "9718859339", password: "2442", name: "Arth Gohil" },
-        { username: "98993 59162", password: "2999", name: "Anish kumar" },
-        { username: "8295078932", password: "4205", name: "Tanishi" }
-    ];
-
-    const popupUsers = ["9650809428", "8826584503", "9319060225", "7015438934"];
-
-    function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const user = users.find(user => user.username === username && user.password === password);
-
-        if (user) {
-            sessionStorage.setItem("loggedIn", "true");
-            sessionStorage.setItem("name", user.name);
-
-            if (popupUsers.includes(username)) {
-                document.getElementById("specialPopup").style.display = "block";
-                return; // Prevent further execution until the popup is closed
+            if (user) {
+                sessionStorage.setItem("loggedIn", "true");
+                sessionStorage.setItem("name", user.name);
+                window.location.href = "main.html";
+            } else {
+                const popup = document.getElementById("popup");
+                popup.style.display = "block";
+                setTimeout(() => {
+                    popup.style.display = "none";
+                }, 5000);
             }
-
-            window.location.href = "main.html";
-        } else {
-            const popup = document.getElementById("popup");
-            popup.style.display = "block";
-            setTimeout(() => {
-                popup.style.display = "none";
-            }, 5000);
         }
-    }
-
-    function closeSpecialPopup() {
-        document.getElementById("specialPopup").style.display = "none";
-        window.location.href = "main.html";
-    }
-</script>
-
+    </script>
 </body>
 </html>
